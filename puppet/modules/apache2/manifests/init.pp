@@ -10,33 +10,42 @@
 ##  o888o                  o888o      o888o
 ##
 
-# class apache2( $document_root, $log_directory ) {
+class apache2( $document_root, $log_directory ) {
 
-#    package { "apache2":
-#        ensure => "latest"
-#    }
+    package { "apache2": ensure => latest }
 
-#    file { "/etc/apache2/sites-available/default":
-#        content => template("apache2/vhost_default.erb")
-#    }
+    file { "/etc/apache2/sites-available/default":
+        content => template("apache2/vhost_default.erb"),
+        require => Package["apache2"],
+    }
 
-#    file { "/etc/apache2/envvars":
-#        content => template("apache2/envvars_default.erb")
-#    }
+    file { "/etc/apache2/envvars":
+        content => template("apache2/envvars_default.erb"),
+        require => Package["apache2"],
+    }
 
-#    file { "${log_directory}":
-#       ensure => 'directory'
-#    }
+    file { "${document_root}":
+        ensure => directory,
+    }
 
-#    service { "apache2":
-#       ensure => running,
-#       hasstatus => true,
-#       hasrestart => true,
-#       require => Package["apache2"],
-#    }
+    service { "apache2":
+        hasstatus  => true,
+        hasrestart => true,
+        enable     => true,
+        ensure     => running,
+        require    => [
+            Package["apache2"],
+            File["/etc/apache2/sites-available/default"],
+            File["/etc/apache2/envvars"],
+        ],
+   }
 
-#    exec { "reload-apache2":
-#       command => "sudo service apache2 reload",
-#    }
+   exec { "service apache2 reload":
+        command   => "sudo service apache2 reload",
+        subscribe => [
+            File["/etc/apache2/sites-available/default"],
+            File["/etc/apache2/envvars"],
+        ],
+   }
 
-# }
+}

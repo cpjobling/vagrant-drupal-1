@@ -15,37 +15,26 @@ class mysql( $root_password, $log_directory ) {
     package { "mysql-server": ensure => latest }
     package { "mysql-client": ensure => latest }
 
-    file { "mysql-config":
-         path      => "/etc/mysql/my.cnf",
+    file { "/etc/mysql/my.cnf":
          content   => template("mysql/my_cnf.erb"),
          subscribe => Package["mysql-server"],
     }
 
-    file { "log-directory":
-        path   => $log_directory,
-        ensure => directory,
-    }
-
-    exec { "set-root-password":
-        # refreshonly => true,
-        unless      => "mysqladmin -uroot -p${root_password} status",
-        command     => "mysqladmin -uroot password ${root_password}",
-        require     => File["mysql-config"],
-        subscribe   => Package["mysql-server"],
-    }
-
-    exec { "create-vagrant-user":
-        unless    => "mysqladmin -uvagrant -pvagrant status",
-        command   => "mysql -uroot -p${root_password} -e \"CREATE USER vagrant@'%' IDENTIFIED BY 'vagrant'; GRANT ALL ON *.* TO vagrant@'%';\"",
-        subscribe => Exec["set-root-password"],
+    exec { "mysqladmin -uroot password \"${root_password}\"":
+        unless    => "mysqladmin -uroot -p\"${root_password}\" status",
+        require   => Service["mysql"],
+        subscribe => Package["mysql-server"],
     }
 
     service { "mysql":
-        hasstatus => true,
-        enable    => true,
-        require   => [
+        hasstatus  => true,
+        hasrestart => true,
+        enable     => true,
+        ensure     => running,
+        require    => [
             Package["mysql-server"],
-            File["log-directory"],
+            File["/etc/mysql/my.cnf"],
         ],
      }
+
 }

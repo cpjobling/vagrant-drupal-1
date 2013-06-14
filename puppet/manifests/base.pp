@@ -27,26 +27,48 @@ group { "puppet":
     ensure => present,
 }
 
-/**
- * MySQL Config
- */
-class { "mysql":
-    root_password => "root",
-    log_directory => $log_directory,
+file { "${log_directory}":
+    ensure => directory,
 }
 
-/**
- * Apache Config
- */
-# class { "apache2":
-#     document_root => $public_html,
-#     log_directory => $log_directory,
-# }
+stage { "preinstall":
+    before => Stage["main"],
+}
 
-/**
- * Import modules
- */
+#
+# Apt
+#
+class { "apt":
+    stage => preinstall,
+}
+
+#
+# MySQL Config
+#
+class { "mysql":
+    root_password => "root",
+    log_directory => "${log_directory}",
+}
+
+#
+# Apache Config
+#
+class { "apache2":
+    document_root => "${public_html}",
+    log_directory => "${log_directory}",
+}
+
+#
+# PHP5 Config
+#
+class { "php5":
+    log_directory => "${log_directory}"
+}
+
+#
+# Import modules
+#
 include apt
 include mysql
-# include apache2
-# include php5
+include apache2
+include php5

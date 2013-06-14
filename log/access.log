@@ -1,0 +1,5 @@
+10.0.2.2 - - [14/Jun/2013:02:22:24 +0000] "GET / HTTP/1.1" 200 575 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.22 (KHTML, like Gecko) Ubuntu Chromium/25.0.1364.160 Chrome/25.0.1364.160 Safari/537.22"
+10.0.2.2 - - [14/Jun/2013:02:22:24 +0000] "GET /icons/blank.gif HTTP/1.1" 200 438 "http://steve.local:8080/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.22 (KHTML, like Gecko) Ubuntu Chromium/25.0.1364.160 Chrome/25.0.1364.160 Safari/537.22"
+10.0.2.2 - - [14/Jun/2013:02:24:01 +0000] "GET / HTTP/1.1" 200 427 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.22 (KHTML, like Gecko) Ubuntu Chromium/25.0.1364.160 Chrome/25.0.1364.160 Safari/537.22"
+10.0.2.2 - - [14/Jun/2013:02:24:01 +0000] "GET /favicon.ico HTTP/1.1" 404 501 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.22 (KHTML, like Gecko) Ubuntu Chromium/25.0.1364.160 Chrome/25.0.1364.160 Safari/537.22"
+10.0.2.2 - - [14/Jun/2013:02:24:44 +0000] "GET /phpinfo.php HTTP/1.1" 200 320 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.22 (KHTML, like Gecko) Ubuntu Chromium/25.0.1364.160 Chrome/25.0.1364.160 Safari/537.22"
