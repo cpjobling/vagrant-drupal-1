@@ -13,7 +13,12 @@
 $vagrant_dir   = "/vagrant"
 
 Exec {
-    path => "/bin:/usr/bin:/usr/local/bin"
+    path => [
+        "/bin/",
+        "/sbin/" ,
+        "/usr/bin/",
+        "/usr/sbin/",
+    ],
 }
 
 group { "puppet":
