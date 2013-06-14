@@ -10,38 +10,13 @@
 ##  o888o                  o888o      o888o
 ##
 
-$vagrant_dir   = "/vagrant"
-$log_directory = "${vagrant_dir}/log"
-$public_html   = "${vagrant_dir}/public_html"
-
-Exec {
-    path => "/bin:/usr/bin:/usr/local/bin"
-}
-
-group { "puppet":
-    ensure => present,
-}
-
-/**
- * MySQL Config
- */
-class { "mysql":
-    root_password => "root",
-    log_directory => $log_directory,
-}
-
-/**
- * Apache Config
- */
-# class { "apache2":
-#     document_root => $public_html,
-#     log_directory => $log_directory,
+# class php5 {
+#    package {
+# 	["php5-cli", "php5-common", "php5-mysql", "php5-curl", "php5-gd", "php5-intl", "php5-mcrypt"]:
+#  	ensure => latest
+#    }
+#    package {
+#         ["libapache2-mod-php5"]:
+#         ensure => latest
+#    }
 # }
-
-/**
- * Import modules
- */
-include apt
-include mysql
-# include apache2
-# include php5

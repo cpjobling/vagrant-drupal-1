@@ -1,0 +1,32 @@
+##
+##                                           oooo
+##                                           `888
+##   .oooo.   oo.ooooo.   .oooo.    .ooooo.   888 .oo.    .ooooo.
+##  `P  )88b   888' `88b `P  )88b  d88' `"Y8  888P"Y88b  d88' `88b
+##   .oP"888   888   888  .oP"888  888        888   888  888ooo888
+##  d8(  888   888   888 d8(  888  888   .o8  888   888  888    .o
+##  `Y888""8o  888bod8P' `Y888""8o `Y8bod8P' o888o o888o `Y8bod8P'
+##             888
+##            o888o
+##
+
+# envvars - default environment variables for apache2ctl
+
+# Since there is no sane way to get the parsed apache2 config in scripts, some
+# settings are defined via environment variables and then used in apache2ctl,
+# /etc/init.d/apache2, /etc/logrotate.d/apache2, etc.
+export APACHE_RUN_USER=vagrant
+export APACHE_RUN_GROUP=vagrant
+export APACHE_PID_FILE=/var/run/apache2.pid
+export APACHE_LOG_DIR=<%= log_directory %>
+
+## The locale used by some modules like mod_dav
+export LANG=C
+## Uncomment the following line to use the system default locale instead:
+#. /etc/default/locale
+
+export LANG
+
+## The command to get the status for 'apache2ctl status'.
+## Some packages providing 'www-browser' need '--dump' instead of '-dump'.
+#export APACHE_LYNX='www-browser -dump'
