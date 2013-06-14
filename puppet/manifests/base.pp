@@ -15,7 +15,12 @@ $log_directory = "${vagrant_dir}/log"
 $public_html   = "${vagrant_dir}/public_html"
 
 Exec {
-    path => "/bin:/usr/bin:/usr/local/bin"
+    path => [
+        "/bin/",
+        "/sbin/" ,
+        "/usr/bin/",
+        "/usr/sbin/",
+    ],
 }
 
 group { "puppet":
