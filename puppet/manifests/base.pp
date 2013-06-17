@@ -25,12 +25,15 @@ stage { "preinstall":
     before => Stage["main"],
 }
 
-class { "apt":
-    stage => preinstall,
-}
-
 group { "puppet":
     ensure => present,
+}
+
+#
+# Apt Config
+#
+class { "apt":
+    stage => preinstall,
 }
 
 /**
