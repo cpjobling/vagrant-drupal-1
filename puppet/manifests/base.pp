@@ -23,16 +23,16 @@ Exec {
     ],
 }
 
+stage { "preinstall":
+    before => Stage["main"],
+}
+
 group { "puppet":
     ensure => present,
 }
 
 file { "${log_directory}":
     ensure => directory,
-}
-
-stage { "preinstall":
-    before => Stage["main"],
 }
 
 #
