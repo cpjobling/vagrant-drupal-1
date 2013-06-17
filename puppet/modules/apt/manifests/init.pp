@@ -10,10 +10,29 @@
 ##  o888o                  o888o      o888o
 ##
 
+stage { "preinstall":
+    before => Stage["main"],
+}
+
 class apt {
 
     exec { "apt-get update":
          command => "apt-get update",
     }
 
+    # exec { "apt-get upgrade":
+    #      command   => "apt-get -y upgrade",
+    #      # command   => "aptitude -y safe-upgrade",
+    #      subscribe => Exec["apt-get update"],
+    # }
+
+    # exec { "apt-get autoremove":
+    #      command   => "apt-get -y autoremove",
+    #      # command   => "apt-get -y autoremove",
+    #      subscribe => Exec["apt-get upgrade"],
+    # }
+}
+
+class { "apt":
+    stage => preinstall,
 }
