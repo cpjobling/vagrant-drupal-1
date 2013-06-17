@@ -18,6 +18,7 @@ class php5( $log_directory ) {
     package { "php5-common":         ensure => latest }
     package { "php5-mysql":          ensure => latest }
     package { "php5-curl":           ensure => latest }
+    package { "php5-gd":             ensure => latest }
     package { "php-pear":            ensure => latest }
     package { "libapache2-mod-php5": ensure => latest }
 

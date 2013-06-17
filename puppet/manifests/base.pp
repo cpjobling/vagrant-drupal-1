@@ -12,7 +12,8 @@
 
 $vagrant_dir   = "/vagrant"
 $log_directory = "${vagrant_dir}/log"
-$public_html   = "${vagrant_dir}/public_html"
+$public_html   = "/home/vagrant/public_html"
+$drupal_dir    = "${vagrant_dir}/drupal"
 
 Exec {
     path => [
@@ -66,9 +67,18 @@ class { "php5":
 }
 
 #
+# Drupal Config
+#
+class { "drupal":
+    document_root => "${public_html}",
+    drupal_dir    => "${drupal_dir}",
+}
+
+#
 # Import modules
 #
 include apt
+include drupal
 include mysql
 include apache2
 include php5

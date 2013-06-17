@@ -24,10 +24,6 @@ class apache2( $document_root, $log_directory ) {
         require => Package["apache2"],
     }
 
-    file { "${document_root}":
-        ensure => directory,
-    }
-
     service { "apache2":
         hasstatus  => true,
         hasrestart => true,
