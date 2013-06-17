@@ -10,10 +10,6 @@
 ##  o888o                  o888o      o888o
 ##
 
-stage { "preinstall":
-    before => Stage["main"],
-}
-
 class apt {
 
     exec { "apt-get update":
@@ -31,8 +27,4 @@ class apt {
     #      # command   => "apt-get -y autoremove",
     #      subscribe => Exec["apt-get upgrade"],
     # }
-}
-
-class { "apt":
-    stage => preinstall,
 }
