@@ -11,12 +11,12 @@
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
 
-    DocumentRoot <%= document_root %>
+    DocumentRoot <%= @document_root %>
     <Directory />
         Options FollowSymLinks
         AllowOverride None
     </Directory>
-    <Directory <%= document_root %>/>
+    <Directory <%= @document_root %>/>
         Options all
         AllowOverride all
         Order allow,deny
