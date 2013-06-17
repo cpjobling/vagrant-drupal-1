@@ -36,7 +36,7 @@ class { "apt":
     stage => preinstall,
 }
 
-/**
- * Import modules
- */
+#
+# Import modules
+#
 include apt
