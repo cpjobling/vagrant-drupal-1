@@ -10,10 +10,6 @@
 ##  o888o                  o888o      o888o
 ##
 
-stage { "preinstall":
-    before => Stage["main"],
-}
-
 class apt {
 
     exec { "apt-get update":
@@ -33,8 +29,4 @@ class apt {
     #      subscribe => Exec["apt-get upgrade"],
     # }
 
-}
-
-class { "apt":
-    stage => preinstall,
 }
