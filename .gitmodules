@@ -1,0 +1,3 @@
+[submodule "drupal"]
+	path = drupal
+	url = https://github.com/cpjobling/proman-drupal.git
