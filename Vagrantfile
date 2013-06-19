@@ -17,7 +17,7 @@ Vagrant::Config.run do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box     = "precise64"
-  config.vm.box_url = "https://dl.dropboxusercontent.com/u/4775364/vagrant/precise64.box"
+  config.vm.box_url = " http://files.vagrantup.com/lucid64.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
