@@ -2,3 +2,5 @@
 *.sublime-project
 *.sublime-workspace
 log/*
+proman_2014.sql
+
