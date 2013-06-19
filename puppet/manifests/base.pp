@@ -75,6 +75,14 @@ class { "drupal":
 }
 
 #
+# Dev-Tools: git, vim, etc
+#
+class { "dev-tools":
+    log_directory => "${log_directory}"
+}
+
+
+#
 # Import modules
 #
 include apt
@@ -82,3 +90,4 @@ include drupal
 include mysql
 include apache2
 include php5
+include dev-tools
